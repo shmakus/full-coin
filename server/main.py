@@ -1,6 +1,9 @@
 from fastapi import Depends, FastAPI, HTTPException
 from sqlalchemy.orm import Session
 
+from fastapi.middleware.cors import CORSMiddleware
+
+
 from database.models import *
 from sql import crud, schemas
 from database import models
@@ -15,6 +18,14 @@ models.Base.metadata.create_all(bind=engine)
 
 app = FastAPI()
 
+# Настройка CORS для разрешения запросов с вашего фронтенда
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:8080"],  # Замените на адрес вашего фронтенда
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 # Dependency
 def get_db():
