@@ -1,4 +1,4 @@
 ./server-vue/node_modules
 ./server/venv
-../.idea
+.idea
 __pycashe__
