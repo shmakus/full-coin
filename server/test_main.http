@@ -1,0 +1,28 @@
+# Test your FastAPI endpoints
+
+GET http://127.0.0.1:8000/
+Accept: application/json
+
+###
+
+GET http://127.0.0.1:8000/users/
+Accept: application/json
+
+###
+
+GET http://127.0.0.1:8000/exchange/1/currencies
+Accept: application/json
+
+###
+
+GET http://127.0.0.1:8000/exchange/1
+Accept: application/json
+
+###
+
+GET http://127.0.0.1:8000/exchanges
+Accept: application/json
+
+###
+POST http://127.0.0.1:8000/create_exchange/
+
