@@ -6,6 +6,113 @@ import re
 from multiprocessing import Process
 
 
+def unify_data(row_data):
+    # Функция для унификации данных
+    pair_name_mapping_dict = {
+        "Сбербанк RUB": "Сбербанк(RUB)",
+        "EOS EOS": "EOS(EOS)",
+        "BinanceCoin BEP20 BNB": "BinanceCoin BEP20(BNB)",
+        "Polygon MATIC": "Polygon(MATIC)",
+        "Bitcoin BTC": "Bitcoin(BTC)",
+        "Ethereum ETH": "Ethereum(ETH)",
+        "Ethereum BEP20 ETH": "Ethereum BEP20(ETH)",
+        "Bitcoin Cash BCH": "Bitcoin Cash(BCH)",
+        "Ripple XRP": "Ripple(XRP)",
+        "ERC20 USDT": "Tether ERC20(USDT)",
+        "OMNI USDT": "Tether OMNI(USDT)",
+        "TRC20 USDT": "Tether TRC20(USDT)",
+        "BEP20 USDT": "Tether BEP20(USDT)",
+        "Tether BEP20 USDT": "Tether BEP20(USDT)",
+        "USDCoin ERC20 USDC": "USDCoin ERC20(USDC)",
+        "Dai DAI": "DAI(DAI)",
+        "Stellar XLM": "Stellar(XLM)",
+        "Pax Dollar USDP": "USDP(Pax Dollar)",
+        "NEM XEM": "NEM(XEM)",
+        "USD Coin ERC20 USDC": "USDC(USD Coin ERC20)",
+        "NEO NEO": "NEO(NEO)",
+        "TUSD": "TUSD(True USD ERC20)",
+        "Dai DAI": "Dai(DAI)",
+        "MIOTA IOTA": "IOTA(MIOTA)",
+        "Cardano ADA": "Cardano(ADA)",
+        "OmiseGO OMG": "OMG Network",
+        "Verge XVG": "Verge(XVG)",
+        "0x ZRX": "0x(ZRX)",
+        "Solana SOL": "Solana(SOL)",
+        "ICON ICX": "ICON(ICX)",
+        "Cosmos ATOM": "Cosmos(ATOM)",
+        "Chainlink LINK": "Chainlink(LINK)",
+        "Ontology ONT": "Ontology(ONT)",
+        "BAT BAT": "BAT(BAT)",
+        "USD Coin TRC20 USDC": "USDCoin TRC20(USD)",
+        "Тинькофф RUB": "Тинькофф(RUB)",
+        "Visa MasterCard RUB": "Visa/MasterCard(RUB)",
+        "СБП RUB": "СБП(RUB)",
+        "Росбанк RUB": "Росбанк(RUB)",
+        "Альфа банк RUB": "Альфа-банк(RUB)",
+        "Карта Мир RUB": "Карта Мир(RUB)",
+        "Почта Банк RUB": "Почта Банк(RUB)",
+        "ВТБ RUB": "ВТБ(RUB)",
+        "Kaspi Bank KZT": "Kaspi Bank(KZT)",
+        "Райффайзен Банк RUB": "Райффайзен Банк(RUB)",
+        "BinanceCoin ERC20 BNB": "BinanceCoin ERC20(BNB)",
+        "Наличные МСК RUB": "Наличные(RUB)",
+        "Dash DASH": "Dash(DASH)",
+        "ForteBank KZT": "ForteBank(KZT)",
+        "Zcash ZEC": "Zcash(ZEC)",
+        "HalykBank KZT": "HalykBank(KZT)",
+        "Waves WAVES": "Waves(WAVES)",
+        "Jusan Bank KZT": "Jusan Bank(KZT)",
+        "VISA MASTERCARD Казахстан KZT": "VISA/MASTERCARD(KZT)",
+        "Dogecoin DOGE": "Dogecoin(DOGE)",
+        "Litecoin LTC": "Litecoin(LTC)",
+        "TRON TRX": "TRON(TRX)",
+        "Авангард RUB": "Авангард(RUB)",
+        "СБП RUB": "СБП(RUB)",
+        "Тинькофф Онлайн RUB": "Тинькофф(RUB)",
+        "ВТБ 24 RUB": "ВТБ(RUB)",
+        "Tether ERC20 USDT": "USDT(ERC20)",
+        "Tether (ERC20) USDT": "USDT(ERC20)",
+        "Альфа-Банк RUB": "Альфа-Банк(RUB)",
+        "VeChain VET": "VeChain(VET)",
+        "Ethereum (ERC-20) ETH": "Ethereum(ETH)",
+        "Uniswap UNI": "Uniswap(UNI)",
+        "Payeer EUR": "Payeer(EUR)",
+        "Tether TRC20 USDT": "Tether TRC20(USDT)",
+        "VISA/MC RUB": "Visa/MasterCard(RUB)",
+        "USDCoin TRC20 USDC": "USDCoin TRC20(USDC)",
+        "Наличные RUB": "Наличные(RUB)",
+        "Любая карта RUB": "Любая карта(RUB)",
+        "Райффайзен RUB": "Райффайзен(RUB)",
+        "QIWI RUB": "QIWI(RUB)",
+        "ЮMoney RUB": "ЮMoney(RUB)",
+        "Тезер TRC20 USDT": "Tether TRC20(USDT)",
+        "Сальдо LTC": "Tether TRC20(USDT)",
+        "Visa/MasterCard KZT": "Visa/MasterCard(KZT)",
+        "Евразийский KZT": "Евразийский(KZT)",
+        "Тезер BEP20 USDT": "Tether BEP20(USDT)",
+        "": "",
+        "": "",
+        "": "",
+
+        # Добавьте другие соответствия по мере необходимости
+    }
+
+    payment_method_mapping_dict = {
+        "Bitcoin BTC": "BTC",
+        "Ethereum ETH": "ETH",
+        "Tether ERC20 USDT": "USDT",
+        # Добавьте другие соответствия по мере необходимости
+    }
+
+    # Унификация данных для pair_name
+    row_data["pair_name"] = pair_name_mapping_dict.get(row_data["pair_name"], row_data["pair_name"])
+
+    # Унификация данных для payment_method
+    row_data["payment_method"] = payment_method_mapping_dict.get(row_data["payment_method"], row_data["payment_method"])
+
+    return row_data
+
+
 def extract_coolcoin_data(soup):
     rows = soup.find_all('tr', class_='javahref')
     data_list = []
@@ -37,7 +144,7 @@ def extract_coolcoin_data(soup):
                     trading_pair = f"{base_currency}-{quote_currency}"
                     row_data["trading_pair"] = trading_pair
 
-            data_list.append(row_data)
+            data_list.append(unify_data(row_data))  # Применяем унификацию данных
     return data_list
 
 
@@ -59,7 +166,8 @@ def extract_bitcoin24_data(soup):
         match = re.search(r'exchange-(.*?)$', row_data["link"])
         row_data["trading_pair"] = match.group(1).replace("-to-", "-")
 
-        data_list.append(row_data)
+        data_list.append(unify_data(row_data))  # Применяем унификацию данных
+
     return data_list
 
 
@@ -81,7 +189,7 @@ def extract_apexchange_data(soup):
         match = re.search(r'exchange-(.*?)$', row_data["link"])
         row_data["trading_pair"] = match.group(1).replace("-to-", "-")
 
-        data_list.append(row_data)
+        data_list.append(unify_data(row_data))  # Применяем унификацию данных
     return data_list
 
 
@@ -103,7 +211,7 @@ def extract_cashadmin_data(soup):
         match = re.search(r'exchange-(.*?)$', row_data["link"])
         row_data["trading_pair"] = match.group(1).replace("-to-", "-")
 
-        data_list.append(row_data)
+        data_list.append(unify_data(row_data))  # Применяем унификацию данных
     return data_list
 
 
@@ -138,7 +246,7 @@ def extract_grambit_data(soup):
                     trading_pair = f"{base_currency}-{quote_currency}"
                     row_data["trading_pair"] = trading_pair
 
-            data_list.append(row_data)
+            data_list.append(unify_data(row_data))  # Применяем унификацию данных
     return data_list
 
 
@@ -165,7 +273,7 @@ def extract_finex24_data(soup):
                 "trading_pair": trading_pair
             }
 
-            data_list.append(row_data)
+            data_list.append(unify_data(row_data))  # Применяем унификацию данных
     return data_list
 
 
@@ -187,7 +295,7 @@ def extract_obama_data(soup):
         match = re.search(r'exchange-(.*?)$', row_data["link"])
         trading_pair = match.group(1).replace("-to-", "-")
         row_data["trading_pair"] = trading_pair.upper()
-        data_list.append(row_data)
+        data_list.append(unify_data(row_data))  # Применяем унификацию данных
     return data_list
 
 
@@ -209,7 +317,7 @@ def extract_pandpay_data(soup):
         match = re.search(r'exchange-(.*?)$', row_data["link"])
         trading_pair = match.group(1).replace("-to-", "-")
         row_data["trading_pair"] = trading_pair.upper()
-        data_list.append(row_data)
+        data_list.append(unify_data(row_data))  # Применяем унификацию данных
     return data_list
 
 
@@ -244,7 +352,7 @@ def extract_cryptomax_data(soup):
                     trading_pair = f"{base_currency}-{quote_currency}"
                     row_data["trading_pair"] = trading_pair
 
-            data_list.append(row_data)
+            data_list.append(unify_data(row_data))  # Применяем унификацию данных
     return data_list
 
 
@@ -266,7 +374,7 @@ def extract_obmen_data(soup):
         match = re.search(r'exchange-(.*?)$', row_data["link"])
         trading_pair = match.group(1).replace("-to-", "-")
         row_data["trading_pair"] = trading_pair.upper()
-        data_list.append(row_data)
+        data_list.append(unify_data(row_data))  # Применяем унификацию данных
     return data_list
 
 
@@ -301,7 +409,7 @@ def extract_excoin_data(soup):
                     trading_pair = f"{base_currency}-{quote_currency}"
                     row_data["trading_pair"] = trading_pair
 
-            data_list.append(row_data)
+            data_list.append(unify_data(row_data))  # Применяем унификацию данных
     return data_list
 
 
@@ -323,7 +431,7 @@ def extract_allmoney_data(soup):
         match = re.search(r'exchange-(.*?)$', row_data["link"])
         trading_pair = match.group(1).replace("-to-", "-")
         row_data["trading_pair"] = trading_pair.upper()
-        data_list.append(row_data)
+        data_list.append(unify_data(row_data))  # Применяем унификацию данных
     return data_list
 
 
@@ -345,7 +453,7 @@ def extract_robmen_data(soup):
         match = re.search(r'exchange-(.*?)$', row_data["link"])
         trading_pair = match.group(1).replace("-to-", "-")
         row_data["trading_pair"] = trading_pair.upper()
-        data_list.append(row_data)
+        data_list.append(unify_data(row_data))  # Применяем унификацию данных
     return data_list
 
 
@@ -367,7 +475,7 @@ def extract_cointok_data(soup):
         match = re.search(r'exchange-(.*?)$', row_data["link"])
         trading_pair = match.group(1).replace("-to-", "-")
         row_data["trading_pair"] = trading_pair.upper()
-        data_list.append(row_data)
+        data_list.append(unify_data(row_data))  # Применяем унификацию данных
     return data_list
 
 
@@ -389,7 +497,7 @@ def extract_realexchange_data(soup):
         match = re.search(r'exchange_(.*?)$', row_data["link"])
         trading_pair = match.group(1).replace("_na_", "-")
         row_data["trading_pair"] = trading_pair.upper()
-        data_list.append(row_data)
+        data_list.append(unify_data(row_data))  # Применяем унификацию данных
     return data_list
 
 
@@ -411,7 +519,7 @@ def extract_favoriteexchanger_data(soup):
         match = re.search(r'exchange_(.*?)$', row_data["link"])
         trading_pair = match.group(1).replace("_to_", "-")
         row_data["trading_pair"] = trading_pair.upper()
-        data_list.append(row_data)
+        data_list.append(unify_data(row_data))  # Применяем унификацию данных
     return data_list
 
 
@@ -433,7 +541,7 @@ def extract_realbit_data(soup):
         match = re.search(r'exchange_(.*?)$', row_data["link"])
         trading_pair = match.group(1).replace("_na_", "-")
         row_data["trading_pair"] = trading_pair.upper()
-        data_list.append(row_data)
+        data_list.append(unify_data(row_data))  # Применяем унификацию данных
     return data_list
 
 
@@ -455,7 +563,7 @@ def extract_altinbit_data(soup):
         match = re.search(r'exchange-(.*?)$', row_data["link"])
         trading_pair = match.group(1).replace("-to-", "-")
         row_data["trading_pair"] = trading_pair.upper()
-        data_list.append(row_data)
+        data_list.append(unify_data(row_data))  # Применяем унификацию данных
     return data_list
 
 
@@ -477,7 +585,7 @@ def extract_epichange_data(soup):
         match = re.search(r'exchange-(.*?)$', row_data["link"])
         trading_pair = match.group(1).replace("-to-", "-")
         row_data["trading_pair"] = trading_pair.upper()
-        data_list.append(row_data)
+        data_list.append(unify_data(row_data))  # Применяем унификацию данных
     return data_list
 
 
@@ -499,7 +607,7 @@ def extract_receivemoney_data(soup):
         match = re.search(r'exchange_(.*?)$', row_data["link"])
         trading_pair = match.group(1).replace("_to_", "-")
         row_data["trading_pair"] = trading_pair.upper()
-        data_list.append(row_data)
+        data_list.append(unify_data(row_data))  # Применяем унификацию данных
     return data_list
 
 
@@ -521,7 +629,7 @@ def extract_hot24_data(soup):
         match = re.search(r'exchange_(.*?)$', row_data["link"])
         trading_pair = match.group(1).replace("_to_", "-")
         row_data["trading_pair"] = trading_pair.upper()
-        data_list.append(row_data)
+        data_list.append(unify_data(row_data))  # Применяем унификацию данных
     return data_list
 
 
@@ -543,7 +651,7 @@ def extract_exchangeyourmoney_data(soup):
         match = re.search(r'exchange_(.*?)$', row_data["link"])
         trading_pair = match.group(1).replace("_to_", "-")
         row_data["trading_pair"] = trading_pair.upper()
-        data_list.append(row_data)
+        data_list.append(unify_data(row_data))  # Применяем унификацию данных
     return data_list
 
 
@@ -565,7 +673,7 @@ def extract_sberbit_data(soup):
         match = re.search(r'exchange-(.*?)$', row_data["link"])
         trading_pair = match.group(1).replace("-to-", "-")
         row_data["trading_pair"] = trading_pair.upper()
-        data_list.append(row_data)
+        data_list.append(unify_data(row_data))  # Применяем унификацию данных
     return data_list
 
 
@@ -587,7 +695,7 @@ def extract_niceobmen_data(soup):
         match = re.search(r'exchange-(.*?)$', row_data["link"])
         trading_pair = match.group(1).replace("-to-", "-")
         row_data["trading_pair"] = trading_pair.upper()
-        data_list.append(row_data)
+        data_list.append(unify_data(row_data))  # Применяем унификацию данных
     return data_list
 
 
@@ -609,7 +717,7 @@ def extract_wmsell_data(soup):
         match = re.search(r'exchange-(.*?)$', row_data["link"])
         trading_pair = match.group(1).replace("-to-", "-")
         row_data["trading_pair"] = trading_pair.upper()
-        data_list.append(row_data)
+        data_list.append(unify_data(row_data))  # Применяем унификацию данных
 
     return data_list
 
@@ -644,7 +752,7 @@ def extract_getexch_data(soup):
                     trading_pair = f"{base_currency}-{quote_currency}"
                     row_data["trading_pair"] = trading_pair
 
-            data_list.append(row_data)
+            data_list.append(unify_data(row_data))  # Применяем унификацию данных
     return data_list
 
 
@@ -666,7 +774,7 @@ def extract_crystaltrade_data(soup):
         match = re.search(r'exchange-(.*?)$', row_data["link"])
         trading_pair = match.group(1).replace("-to-", "-")
         row_data["trading_pair"] = trading_pair.upper()
-        data_list.append(row_data)
+        data_list.append(unify_data(row_data))  # Применяем унификацию данных
 
     return data_list
 
@@ -689,7 +797,7 @@ def extract_100bitcoins_data(soup):
         match = re.search(r'exchange-(.*?)$', row_data["link"])
         trading_pair = match.group(1).replace("-to-", "-")
         row_data["trading_pair"] = trading_pair.upper()
-        data_list.append(row_data)
+        data_list.append(unify_data(row_data))  # Применяем унификацию данных
 
     return data_list
 
@@ -712,7 +820,7 @@ def extract_cryptobar_data(soup):
         match = re.search(r'exchange-(.*?)$', row_data["link"])
         trading_pair = match.group(1).replace("-to-", "-")
         row_data["trading_pair"] = trading_pair.upper()
-        data_list.append(row_data)
+        data_list.append(unify_data(row_data))  # Применяем унификацию данных
 
     return data_list
 
@@ -735,7 +843,7 @@ def extract_goldobmen_data(soup):
         match = re.search(r'exchange-(.*?)$', row_data["link"])
         trading_pair = match.group(1).replace("-to-", "-")
         row_data["trading_pair"] = trading_pair.upper()
-        data_list.append(row_data)
+        data_list.append(unify_data(row_data))  # Применяем унификацию данных
 
     return data_list
 
@@ -771,7 +879,7 @@ def extract_adb_data(soup):
                     trading_pair = f"{base_currency}-{quote_currency}"
                     row_data["trading_pair"] = trading_pair
 
-            data_list.append(row_data)
+            data_list.append(unify_data(row_data))  # Применяем унификацию данных
     return data_list
 
 
@@ -806,7 +914,7 @@ def extract_natebit_data(soup):
                     trading_pair = f"{base_currency}-{quote_currency}"
                     row_data["trading_pair"] = trading_pair
 
-            data_list.append(row_data)
+            data_list.append(unify_data(row_data))  # Применяем унификацию данных
     return data_list
 
 
@@ -841,7 +949,7 @@ def extract_globalbits_data(soup):
                     trading_pair = f"{base_currency}-{quote_currency}"
                     row_data["trading_pair"] = trading_pair
 
-            data_list.append(row_data)
+            data_list.append(unify_data(row_data))  # Применяем унификацию данных
     return data_list
 
 
@@ -863,7 +971,7 @@ def extract_coinguru_data(soup):
         match = re.search(r'exchange_(.*?)$', row_data["link"])
         trading_pair = match.group(1).replace("_to_", "-")
         row_data["trading_pair"] = trading_pair.upper()
-        data_list.append(row_data)
+        data_list.append(unify_data(row_data))  # Применяем унификацию данных
 
     return data_list
 
@@ -886,7 +994,7 @@ def extract_atpayz_data(soup):
         match = re.search(r'exchange(.*?)$', row_data["link"])
         trading_pair = match.group(1).replace("_to_", "-")
         row_data["trading_pair"] = trading_pair.upper()
-        data_list.append(row_data)
+        data_list.append(unify_data(row_data))  # Применяем унификацию данных
 
     return data_list
 
@@ -909,7 +1017,7 @@ def extract_obmenlite24_data(soup):
         match = re.search(r'exchange-(.*?)$', row_data["link"])
         trading_pair = match.group(1).replace("-to-", "-")
         row_data["trading_pair"] = trading_pair.upper()
-        data_list.append(row_data)
+        data_list.append(unify_data(row_data))  # Применяем унификацию данных
 
     return data_list
 
@@ -945,7 +1053,7 @@ def extract_expochange_data(soup):
                     trading_pair = f"{base_currency}-{quote_currency}"
                     row_data["trading_pair"] = trading_pair
 
-            data_list.append(row_data)
+            data_list.append(unify_data(row_data))  # Применяем унификацию данных
     return data_list
 
 
@@ -967,7 +1075,7 @@ def extract_ejpmarket_data(soup):
         match = re.search(r'exchange-(.*?)$', row_data["link"])
         trading_pair = match.group(1).replace("_to_", "-")
         row_data["trading_pair"] = trading_pair.upper()
-        data_list.append(row_data)
+        data_list.append(unify_data(row_data))  # Применяем унификацию данных
 
     return data_list
 
@@ -990,7 +1098,7 @@ def extract_24expay_data(soup):
         match = re.search(r'exchange-(.*?)$', row_data["link"])
         trading_pair = match.group(1).replace("-to-", "-")
         row_data["trading_pair"] = trading_pair.upper()
-        data_list.append(row_data)
+        data_list.append(unify_data(row_data))  # Применяем унификацию данных
 
     return data_list
 
@@ -1013,7 +1121,7 @@ def extract_moneymix_data(soup):
         match = re.search(r'exchange-(.*?)$', row_data["link"])
         trading_pair = match.group(1).replace("-to-", "-")
         row_data["trading_pair"] = trading_pair.upper()
-        data_list.append(row_data)
+        data_list.append(unify_data(row_data))  # Применяем унификацию данных
 
     return data_list
 
@@ -1036,7 +1144,7 @@ def extract_1654_data(soup):
         match = re.search(r'exchange-(.*?)$', row_data["link"])
         trading_pair = match.group(1).replace("-to-", "-")
         row_data["trading_pair"] = trading_pair.upper()
-        data_list.append(row_data)
+        data_list.append(unify_data(row_data))  # Применяем унификацию данных
 
     return data_list
 
@@ -1059,7 +1167,7 @@ def extract_swiftchange_data(soup):
         match = re.search(r'exchange-(.*?)$', row_data["link"])
         trading_pair = match.group(1).replace("-to-", "-")
         row_data["trading_pair"] = trading_pair.upper()
-        data_list.append(row_data)
+        data_list.append(unify_data(row_data))  # Применяем унификацию данных
 
 
 
@@ -1085,7 +1193,7 @@ def extract_intercontinental_data(soup):
         match = re.search(r'exchange-(.*?)$', row_data["link"])
         trading_pair = match.group(1).replace("-to-", "-")
         row_data["trading_pair"] = trading_pair.upper()
-        data_list.append(row_data)
+        data_list.append(unify_data(row_data))  # Применяем унификацию данных
 
     return data_list
 
@@ -1108,7 +1216,7 @@ def extract_btchange_data(soup):
         match = re.search(r'exchange-(.*?)$', row_data["link"])
         trading_pair = match.group(1).replace("-to-", "-")
         row_data["trading_pair"] = trading_pair.upper()
-        data_list.append(row_data)
+        data_list.append(unify_data(row_data))  # Применяем унификацию данных
 
     return data_list
 
@@ -1131,7 +1239,7 @@ def extract_bitobmenka_data(soup):
         match = re.search(r'exchange_(.*?)$', row_data["link"])
         trading_pair = match.group(1).replace("_na_", "-")
         row_data["trading_pair"] = trading_pair.upper()
-        data_list.append(row_data)
+        data_list.append(unify_data(row_data))  # Применяем унификацию данных
 
     return data_list
 
@@ -1155,7 +1263,7 @@ def extract_bitbong_data(soup):
         match = re.search(r'exchange-(.*?)$', row_data["link"])
         trading_pair = match.group(1).replace("-to-", "-")
         row_data["trading_pair"] = trading_pair.upper()
-        data_list.append(row_data)
+        data_list.append(unify_data(row_data))  # Применяем унификацию данных
 
     return data_list
 

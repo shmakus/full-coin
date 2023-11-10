@@ -5,14 +5,43 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d08e5fa3-f0a4-452e-9ded-4114ec92cd69" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/server-vue/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/components/Exchanges.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server-vue/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server-vue/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server-vue/babel.config.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server-vue/jsconfig.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server-vue/package-lock.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server-vue/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server-vue/public/favicon.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server-vue/public/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server-vue/src/App.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server-vue/src/assets/logo.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server-vue/src/axios.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/router/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server-vue/src/components/CryptoExchangeList.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server-vue/src/components/HelloWorld.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server-vue/src/main.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server-vue/src/views/CryptoExchangeListPage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Home.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server-vue/vue.config.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server-vue/vue.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/services/api.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/database/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/server/database/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/server/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/parser_cool_coin.py" beforeDir="false" afterPath="$PROJECT_DIR$/server/parser_cool_coin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/sql/crud.py" beforeDir="false" afterPath="$PROJECT_DIR$/server/sql/crud.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+        <option value="JavaScript File" />
+        <option value="Vue Composition API Component" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -29,23 +58,28 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "master",
-    "last_opened_file_path": "/home/shsm/billions/CW/server",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "project.propVCSSupport.DirectoryMappings",
-    "ts.external.directory.path": "/opt/pycharm-2023.2.3/plugins/javascript-impl/jsLanguageServicesImpl/external",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/shsm/billions/CW/server&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;project.propVCSSupport.DirectoryMappings&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;/opt/pycharm-2023.2.3/plugins/javascript-impl/jsLanguageServicesImpl/external&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  },
+  &quot;keyToStringList&quot;: {
+    &quot;vue.recent.templates&quot;: [
+      &quot;Vue Composition API Component&quot;
+    ]
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/server" />
@@ -66,6 +100,11 @@
       <updated>1699430801103</updated>
       <workItem from="1699430802119" duration="1933000" />
       <workItem from="1699432812936" duration="162000" />
+      <workItem from="1699433746239" duration="3499000" />
+      <workItem from="1699437608522" duration="1553000" />
+      <workItem from="1699442545608" duration="1989000" />
+      <workItem from="1699516725164" duration="14000" />
+      <workItem from="1699595377100" duration="12408000" />
     </task>
     <servers />
   </component>

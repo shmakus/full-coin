@@ -26,7 +26,7 @@ class Item(Base):
 
 
 class CurrencyRate(Base):
-    __tablename__ = "coolcoin"
+    __tablename__ = "Courses"
 
     id = Column(Integer, primary_key=True, index=True, autoincrement=True)
     give = Column(String)

@@ -21,7 +21,7 @@ app = FastAPI()
 # Настройка CORS для разрешения запросов с вашего фронтенда
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:8080"],  # Замените на адрес вашего фронтенда
+    allow_origins=["http://localhost:8081"],  # Замените на адрес вашего фронтенда
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -89,13 +89,11 @@ async def get_exchange(id: int):
     return exchang
 
 
-# Создаем API-маршрут для вывода всех оббмеников
-@app.get("/exchange/{id}")
-async def get_exchange(id: int):
-    db = SessionLocal()
-    exchange = db.query(Exchanges).filter_by(id=id).all()
-    db.close()
-    return exchange
+# Создаем API-маршрут для вывода всех курсов
+@app.get("/courses")
+def get_courses(db: Session = Depends(get_db)):
+    courses = db.query(CurrencyRate).all()
+    return courses
 
 
 @app.get("/exchanges")

@@ -1,4 +1,4 @@
-# server-vue
+# client
 
 ## Project setup
 ```
