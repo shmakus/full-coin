@@ -1,7 +1,8 @@
-from sqlalchemy import Boolean, Column, ForeignKey, Integer, String
+from sqlalchemy import Boolean, Column, ForeignKey, Integer, String, Numeric
 from sqlalchemy.orm import relationship
 
 from database.base import Base
+
 
 class User(Base):
     __tablename__ = "users"
@@ -29,17 +30,17 @@ class CurrencyRate(Base):
     __tablename__ = "Courses"
 
     id = Column(Integer, primary_key=True, index=True, autoincrement=True)
-    give = Column(String)
-    pair_name = Column(String)
-    receive = Column(String)
-    payment_method = Column(String)
-    reserve = Column(String)
-    link = Column(String)
-    trading_pair = Column(String)
-    exchange_id = Column(Integer)
-
-
-
+    give_count = Column(Numeric, index=True) #отдаю 1
+    give_name_coin = Column(String) #отдаю USDT
+    give_pair_name = Column(String) #отдаю Techer
+    receive_count = Column(Numeric, index=True) #получаю 1000
+    receive_name_coin = Column(String) #получаю RUB
+    receive_pair_name = Column(String) #получаю Наличные RUB
+    reserve = Column(String) #резерв
+    link = Column(String) #ссылка
+    trading_pair = Column(String) #USDT_RUB
+    exchange_id = Column(Integer) #fee
+    exchange_name = Column(String)
 
 
 class Exchanges(Base):

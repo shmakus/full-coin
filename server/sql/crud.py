@@ -40,12 +40,12 @@ def create_user_item(db: Session, item: schemas.ItemCreate, user_id: int):
     return db_item
 
 
-def get_pair_names(db: Session):
-    return db.query(models.CurrencyRate.pair_name).distinct().all()
+def get_give_pair_name(db: Session):
+    return db.query(models.CurrencyRate.give_pair_name).distinct().all()
 
 
-def get_payment_method(db: Session):
-    return db.query(models.CurrencyRate.payment_method).distinct().all()
+def get_receive_pair_name(db: Session):
+    return db.query(models.CurrencyRate.receive_pair_name).distinct().all()
 
 
 def create_exchange(db: Session, exchange: ExchangeCreate):
@@ -54,3 +54,13 @@ def create_exchange(db: Session, exchange: ExchangeCreate):
     db.commit()
     db.refresh(db_exchange)
     return db_exchange
+
+
+def get_currency_pairs(db: Session) -> dict:
+    give_pair_name = db.query(models.CurrencyRate.give_pair_name).distinct().all()
+    receive_pair_name = db.query(models.CurrencyRate.receive_pair_name).distinct().all()
+
+    give_pair_name = [pair[0] for pair in give_pair_name]
+    receive_pair_name = [pair[0] for pair in receive_pair_name]
+
+    return {"give_pair_name": give_pair_name, "receive_pair_name": receive_pair_name}

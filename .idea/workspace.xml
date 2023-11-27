@@ -5,29 +5,159 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d08e5fa3-f0a4-452e-9ded-4114ec92cd69" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/client/src/components/Exchanges.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server-vue/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server-vue/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server-vue/babel.config.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server-vue/jsconfig.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server-vue/package-lock.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server-vue/package.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server-vue/public/favicon.ico" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server-vue/public/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server-vue/src/App.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server-vue/src/assets/logo.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server-vue/src/axios.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/router/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server-vue/src/components/CryptoExchangeList.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server-vue/src/components/HelloWorld.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server-vue/src/main.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server-vue/src/views/CryptoExchangeListPage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Home.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server-vue/vue.config.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server-vue/vue.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/services/api.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/Home.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Home.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/database/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/server/database/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/server/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/node_modules/.package-lock.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/node_modules/asynckit/LICENSE" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/node_modules/asynckit/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/node_modules/asynckit/bench.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/node_modules/asynckit/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/node_modules/asynckit/lib/abort.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/node_modules/asynckit/lib/async.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/node_modules/asynckit/lib/defer.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/node_modules/asynckit/lib/iterate.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/node_modules/asynckit/lib/readable_asynckit.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/node_modules/asynckit/lib/readable_parallel.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/node_modules/asynckit/lib/readable_serial.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/node_modules/asynckit/lib/readable_serial_ordered.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/node_modules/asynckit/lib/state.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/node_modules/asynckit/lib/streamify.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/node_modules/asynckit/lib/terminator.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/node_modules/asynckit/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/node_modules/asynckit/parallel.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/node_modules/asynckit/serial.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/node_modules/asynckit/serialOrdered.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/node_modules/asynckit/stream.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/node_modules/axios/CHANGELOG.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/node_modules/axios/LICENSE" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/node_modules/axios/MIGRATION_GUIDE.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/node_modules/axios/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/node_modules/axios/SECURITY.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/node_modules/axios/dist/axios.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/node_modules/axios/dist/axios.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/node_modules/axios/dist/axios.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/node_modules/axios/dist/axios.min.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/node_modules/axios/dist/browser/axios.cjs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/node_modules/axios/dist/browser/axios.cjs.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/node_modules/axios/dist/esm/axios.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/node_modules/axios/dist/esm/axios.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/node_modules/axios/dist/esm/axios.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/node_modules/axios/dist/esm/axios.min.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/node_modules/axios/dist/node/axios.cjs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/node_modules/axios/dist/node/axios.cjs.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/node_modules/axios/index.d.cts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/node_modules/axios/index.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/node_modules/axios/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/node_modules/axios/lib/adapters/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/node_modules/axios/lib/adapters/adapters.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/node_modules/axios/lib/adapters/http.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/node_modules/axios/lib/adapters/xhr.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/node_modules/axios/lib/axios.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/node_modules/axios/lib/cancel/CancelToken.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/node_modules/axios/lib/cancel/CanceledError.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/node_modules/axios/lib/cancel/isCancel.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/node_modules/axios/lib/core/Axios.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/node_modules/axios/lib/core/AxiosError.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/node_modules/axios/lib/core/AxiosHeaders.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/node_modules/axios/lib/core/InterceptorManager.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/node_modules/axios/lib/core/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/node_modules/axios/lib/core/buildFullPath.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/node_modules/axios/lib/core/dispatchRequest.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/node_modules/axios/lib/core/mergeConfig.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/node_modules/axios/lib/core/settle.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/node_modules/axios/lib/core/transformData.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/node_modules/axios/lib/defaults/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/node_modules/axios/lib/defaults/transitional.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/node_modules/axios/lib/env/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/node_modules/axios/lib/env/classes/FormData.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/node_modules/axios/lib/env/data.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/node_modules/axios/lib/helpers/AxiosTransformStream.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/node_modules/axios/lib/helpers/AxiosURLSearchParams.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/node_modules/axios/lib/helpers/HttpStatusCode.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/node_modules/axios/lib/helpers/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/node_modules/axios/lib/helpers/ZlibHeaderTransformStream.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/node_modules/axios/lib/helpers/bind.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/node_modules/axios/lib/helpers/buildURL.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/node_modules/axios/lib/helpers/callbackify.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/node_modules/axios/lib/helpers/combineURLs.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/node_modules/axios/lib/helpers/cookies.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/node_modules/axios/lib/helpers/deprecatedMethod.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/node_modules/axios/lib/helpers/formDataToJSON.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/node_modules/axios/lib/helpers/formDataToStream.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/node_modules/axios/lib/helpers/fromDataURI.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/node_modules/axios/lib/helpers/isAbsoluteURL.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/node_modules/axios/lib/helpers/isAxiosError.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/node_modules/axios/lib/helpers/isURLSameOrigin.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/node_modules/axios/lib/helpers/null.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/node_modules/axios/lib/helpers/parseHeaders.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/node_modules/axios/lib/helpers/parseProtocol.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/node_modules/axios/lib/helpers/readBlob.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/node_modules/axios/lib/helpers/speedometer.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/node_modules/axios/lib/helpers/spread.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/node_modules/axios/lib/helpers/throttle.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/node_modules/axios/lib/helpers/toFormData.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/node_modules/axios/lib/helpers/toURLEncodedForm.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/node_modules/axios/lib/helpers/validator.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/node_modules/axios/lib/platform/browser/classes/Blob.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/node_modules/axios/lib/platform/browser/classes/FormData.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/node_modules/axios/lib/platform/browser/classes/URLSearchParams.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/node_modules/axios/lib/platform/browser/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/node_modules/axios/lib/platform/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/node_modules/axios/lib/platform/node/classes/FormData.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/node_modules/axios/lib/platform/node/classes/URLSearchParams.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/node_modules/axios/lib/platform/node/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/node_modules/axios/lib/utils.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/node_modules/axios/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/node_modules/combined-stream/License" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/node_modules/combined-stream/Readme.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/node_modules/combined-stream/lib/combined_stream.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/node_modules/combined-stream/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/node_modules/combined-stream/yarn.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/node_modules/delayed-stream/.npmignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/node_modules/delayed-stream/License" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/node_modules/delayed-stream/Makefile" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/node_modules/delayed-stream/Readme.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/node_modules/delayed-stream/lib/delayed_stream.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/node_modules/delayed-stream/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/node_modules/follow-redirects/LICENSE" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/node_modules/follow-redirects/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/node_modules/follow-redirects/debug.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/node_modules/follow-redirects/http.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/node_modules/follow-redirects/https.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/node_modules/follow-redirects/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/node_modules/follow-redirects/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/node_modules/form-data/License" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/node_modules/form-data/README.md.bak" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/node_modules/form-data/Readme.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/node_modules/form-data/index.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/node_modules/form-data/lib/browser.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/node_modules/form-data/lib/form_data.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/node_modules/form-data/lib/populate.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/node_modules/form-data/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/node_modules/mime-db/HISTORY.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/node_modules/mime-db/LICENSE" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/node_modules/mime-db/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/node_modules/mime-db/db.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/node_modules/mime-db/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/node_modules/mime-db/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/node_modules/mime-types/HISTORY.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/node_modules/mime-types/LICENSE" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/node_modules/mime-types/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/node_modules/mime-types/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/node_modules/mime-types/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/node_modules/proxy-from-env/.eslintrc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/node_modules/proxy-from-env/.travis.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/node_modules/proxy-from-env/LICENSE" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/node_modules/proxy-from-env/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/node_modules/proxy-from-env/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/node_modules/proxy-from-env/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/node_modules/proxy-from-env/test.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/server/parser_cool_coin.py" beforeDir="false" afterPath="$PROJECT_DIR$/server/parser_cool_coin.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/sql/crud.py" beforeDir="false" afterPath="$PROJECT_DIR$/server/sql/crud.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/test_main.http" beforeDir="false" afterPath="$PROJECT_DIR$/server/test_main.http" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -64,14 +194,14 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
     &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/shsm/billions/CW/server&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/warlock/PycharmProjects/full-coin&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;project.propVCSSupport.DirectoryMappings&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;/opt/pycharm-2023.2.3/plugins/javascript-impl/jsLanguageServicesImpl/external&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;/opt/pycharm-2023.2.5/plugins/javascript-impl/jsLanguageServicesImpl/external&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
   &quot;keyToStringList&quot;: {
@@ -90,6 +220,24 @@
       <recent name="$PROJECT_DIR$" />
     </key>
   </component>
+  <component name="RunManager" selected="HTTP Request.test_main | #7">
+    <configuration name="test_main | #4" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$PROJECT_DIR$/server/test_main.http" index="4" requestIdentifier="#4" runType="Run single request">
+      <method v="2" />
+    </configuration>
+    <configuration name="test_main | #7" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$PROJECT_DIR$/server/test_main.http" index="7" requestIdentifier="#7" runType="Run single request">
+      <method v="2" />
+    </configuration>
+    <configuration name="test_main | #8" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$PROJECT_DIR$/server/test_main.http" index="8" requestIdentifier="#8" runType="Run single request">
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="HTTP Request.test_main | #7" />
+        <item itemvalue="HTTP Request.test_main | #8" />
+        <item itemvalue="HTTP Request.test_main | #4" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -105,6 +253,11 @@
       <workItem from="1699442545608" duration="1989000" />
       <workItem from="1699516725164" duration="14000" />
       <workItem from="1699595377100" duration="12408000" />
+      <workItem from="1700840727871" duration="15100000" />
+      <workItem from="1700926312471" duration="13329000" />
+      <workItem from="1701002399862" duration="15537000" />
+      <workItem from="1701023769332" duration="4000" />
+      <workItem from="1701023871651" duration="1073000" />
     </task>
     <servers />
   </component>

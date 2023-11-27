@@ -26,3 +26,10 @@ Accept: application/json
 ###
 POST http://127.0.0.1:8000/create_exchange/
 
+###
+GET http://127.0.0.1:8000/currency-rates/?give_pair_name=Polygon(MATIC)&receive_pair_name=Тинькофф QR(RUB)
+Accept: application/json
+
+###
+GET http://127.0.0.1:8000/currency-pairs
+Accept: application/json

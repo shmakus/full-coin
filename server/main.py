@@ -1,13 +1,19 @@
 from fastapi import Depends, FastAPI, HTTPException
 from sqlalchemy.orm import Session
+from fastapi import FastAPI, Query
 
 from fastapi.middleware.cors import CORSMiddleware
-
 
 from database.models import *
 from sql import crud, schemas
 from database import models
 from database.base import SessionLocal, engine
+
+
+
+from fastapi.responses import JSONResponse
+from database.base import SessionLocal
+from database.models import CurrencyRate
 
 from pydantic import BaseModel
 from typing import List
@@ -21,11 +27,12 @@ app = FastAPI()
 # Настройка CORS для разрешения запросов с вашего фронтенда
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:8081"],  # Замените на адрес вашего фронтенда
+    allow_origins=["http://localhost:8080"],  # Замените на адрес вашего фронтенда
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
 
 # Dependency
 def get_db():
@@ -80,13 +87,14 @@ async def get_currencies_for_exchange(exchange_id: int):
     return currencies
 
 
-# Создаем API-маршрут для вывода конкретного обменника
+# Создаем API-маршрут для вывода конкретного обменни
 @app.get("/exchange/{id}")
 async def get_exchange(id: int):
     db = SessionLocal()
     exchang = db.query(Exchanges).filter_by(id=id).all()
     db.close()
     return exchang
+
 
 
 # Создаем API-маршрут для вывода всех курсов
@@ -106,11 +114,11 @@ async def get_exchange():
 
 @app.post("/filter", response_model=List[CurrencyRateResponse])
 def filter_currency_rates(filter_params: FilterParams):
-    pair_name = filter_params.pair_name
-    payment_method = filter_params.payment_method
+    get_give_pair_name = filter_params.get_give_pair_name
+    receive_pair_name = filter_params.receive_pair_name
 
     with SessionLocal() as db:
-        currency_rates = db.query(CurrencyRate).filter_by(pair_name=pair_name, payment_method=payment_method).all()
+        currency_rates = db.query(CurrencyRate).filter_by(get_give_pair_name=get_give_pair_name, receive_pair_name=receive_pair_name).all()
 
     if not currency_rates:
         raise HTTPException(status_code=404, detail="Курсы не найдены")
@@ -120,13 +128,13 @@ def filter_currency_rates(filter_params: FilterParams):
 
 @app.get("/pair_names/")
 async def get_pair_names(db: Session = Depends(get_db)):
-    pair_names = crud.get_pair_names(db)
-    return pair_names
+    receive_pair_name = crud.get_give_pair_name(db)
+    return receive_pair_name
 
 
 @app.get("/payment_method/")
 async def get_payment_method(db: Session = Depends(get_db)):
-    pair_names = crud.get_payment_method(db)
+    pair_names = crud.get_receive_pair_name(db)
     return pair_names
 
 
@@ -136,3 +144,49 @@ def create_exchange(exchange: schemas.ExchangeCreate):
     db_exchange = crud.create_exchange(db, exchange)
     db.close()
     return db_exchange
+
+def get_currency_rates(db: Session, give_pair_name: str, receive_pair_name: str, limit: int = 10):
+    return (
+        db.query(CurrencyRate)
+        .filter_by(give_pair_name=give_pair_name, receive_pair_name=receive_pair_name)
+        .limit(limit)
+        .all()
+    )
+
+@app.get("/currency-rates/")
+async def get_currency_rates_endpoint(
+    give_pair_name: str = Query(..., description="The currency you want to give"),
+    receive_pair_name: str = Query(..., description="The payment method you want to use"),
+    limit: int = Query(10, description="Limit the number of results"),
+):
+    try:
+        with SessionLocal() as db:
+            rates = get_currency_rates(db, give_pair_name, receive_pair_name, limit)
+            result = [
+                {
+                    "id": rate.id,
+                    "give_count": float(rate.give_count),
+                    "give_name_coin": rate.give_name_coin,
+                    "give_pair_name": rate.give_pair_name,
+                    "receive_count": float(rate.receive_count),
+                    "receive_name_coin": rate.receive_name_coin,
+                    "receive_pair_name": rate.receive_pair_name,
+                    "reserve": rate.reserve,
+                    "link": rate.link,
+                    "trading_pair": rate.trading_pair,
+                    "exchange_id": rate.exchange_id,
+                }
+                for rate in rates
+            ]
+            return JSONResponse(content=result)
+    except Exception as e:
+        print(f"An error occurred: {str(e)}")
+        return JSONResponse(
+            content={"error": f"An error occurred: {str(e)}"}, status_code=500
+        )
+
+
+# Новый маршрут для получения списка уникальных валютных пар
+@app.get("/currency-pairs", response_model=dict)
+def get_currency_pairs(db: Session = Depends(get_db)):
+    return crud.get_currency_pairs(db)
