@@ -165,6 +165,7 @@ async def get_currency_rates_endpoint(
             result = [
                 {
                     "id": rate.id,
+                    "exchange_name": rate.exchange_name,
                     "give_count": float(rate.give_count),
                     "give_name_coin": rate.give_name_coin,
                     "give_pair_name": rate.give_pair_name,
