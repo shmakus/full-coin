@@ -57,10 +57,12 @@ def create_exchange(db: Session, exchange: ExchangeCreate):
 
 
 def get_currency_pairs(db: Session) -> dict:
-    give_pair_name = db.query(models.CurrencyRate.give_pair_name).distinct().all()
-    receive_pair_name = db.query(models.CurrencyRate.receive_pair_name).distinct().all()
+    give_pair_names = db.query(models.CurrencyRate.give_pair_name).distinct().all()
+    receive_pair_names = db.query(models.CurrencyRate.receive_pair_name).distinct().all()
 
-    give_pair_name = [pair[0] for pair in give_pair_name]
-    receive_pair_name = [pair[0] for pair in receive_pair_name]
+    give_pair_names = [{"name": pair[0]} for pair in give_pair_names]
+    receive_pair_names = [{"name": pair[0]} for pair in receive_pair_names]
 
-    return {"give_pair_name": give_pair_name, "receive_pair_name": receive_pair_name}
+    return {"give_pair_name": give_pair_names, "receive_pair_name": receive_pair_names}
+
+

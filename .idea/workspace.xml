@@ -4,7 +4,22 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d08e5fa3-f0a4-452e-9ded-4114ec92cd69" name="Changes" comment="" />
+    <list default="true" id="d08e5fa3-f0a4-452e-9ded-4114ec92cd69" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/quasar-project/src/components/CoursesComponent.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/quasar-project/src/components/ReceivePairsComponent.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/quasar-project/src/components/new_table.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/quasar-project/src/services/EventBus.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/quasar-project/src/services/api_backend.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/Home.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Home.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/database/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/server/database/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/server/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/parser_cool_coin.py" beforeDir="false" afterPath="$PROJECT_DIR$/server/parser_cool_coin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/sql/crud.py" beforeDir="false" afterPath="$PROJECT_DIR$/server/sql/crud.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/test_main.http" beforeDir="false" afterPath="$PROJECT_DIR$/server/test_main.http" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -62,12 +77,16 @@
       <recent name="$PROJECT_DIR$" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/quasar-project/src/services" />
       <recent name="$PROJECT_DIR$/server-vue" />
       <recent name="$PROJECT_DIR$" />
     </key>
   </component>
-  <component name="RunManager" selected="HTTP Request.test_main | #7">
-    <configuration name="test_main | #4" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$PROJECT_DIR$/server/test_main.http" index="4" requestIdentifier="#4" runType="Run single request">
+  <component name="RunManager" selected="HTTP Request.test_main | #12">
+    <configuration name="test_main | #12" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$PROJECT_DIR$/server/test_main.http" index="12" requestIdentifier="#12" runType="Run single request">
+      <method v="2" />
+    </configuration>
+    <configuration name="test_main | #5" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$PROJECT_DIR$/server/test_main.http" index="5" requestIdentifier="#5" runType="Run single request">
       <method v="2" />
     </configuration>
     <configuration name="test_main | #7" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$PROJECT_DIR$/server/test_main.http" index="7" requestIdentifier="#7" runType="Run single request">
@@ -76,11 +95,16 @@
     <configuration name="test_main | #8" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$PROJECT_DIR$/server/test_main.http" index="8" requestIdentifier="#8" runType="Run single request">
       <method v="2" />
     </configuration>
+    <configuration name="test_main | #9" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$PROJECT_DIR$/server/test_main.http" index="9" requestIdentifier="#9" runType="Run single request">
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="HTTP Request.test_main | #7" />
+        <item itemvalue="HTTP Request.test_main | #12" />
+        <item itemvalue="HTTP Request.test_main | #5" />
+        <item itemvalue="HTTP Request.test_main | #9" />
         <item itemvalue="HTTP Request.test_main | #8" />
-        <item itemvalue="HTTP Request.test_main | #4" />
+        <item itemvalue="HTTP Request.test_main | #7" />
       </list>
     </recent_temporary>
   </component>
@@ -104,7 +128,18 @@
       <workItem from="1701002399862" duration="15537000" />
       <workItem from="1701023769332" duration="4000" />
       <workItem from="1701023871651" duration="1073000" />
-      <workItem from="1701100168304" duration="303000" />
+      <workItem from="1701100168304" duration="6303000" />
+      <workItem from="1701275171915" duration="1916000" />
+      <workItem from="1701358496101" duration="7532000" />
+      <workItem from="1702111841203" duration="1986000" />
+      <workItem from="1702185206244" duration="12000" />
+      <workItem from="1702192541997" duration="10204000" />
+      <workItem from="1702210988428" duration="22211000" />
+      <workItem from="1702308348944" duration="5817000" />
+      <workItem from="1702391548139" duration="8800000" />
+      <workItem from="1702621028223" duration="17273000" />
+      <workItem from="1702958993136" duration="11000" />
+      <workItem from="1702962169847" duration="11360000" />
     </task>
     <servers />
   </component>

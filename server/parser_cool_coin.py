@@ -1,7 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
 from database.base import SessionLocal
-from database.models import CurrencyRate, Exchanges
+from database.models import CurrencyRate, Exchange
 import re
 from multiprocessing import Process
 
@@ -885,7 +885,7 @@ def extract_coolcoin_data(soup):
             "give_pair_name": "",
             "receive_count": "",
             "receive_pair_name": "",
-            "reserve": "",
+            "reserve_count": "",
             "link": "",
             "trading_pair": "",
             "exchange_id": 0
@@ -895,7 +895,7 @@ def extract_coolcoin_data(soup):
             row_data["give_pair_name"] = row.find_all('td')[1].find('div', class_='obmenlinetext').text.strip() if row.find_all('td')[1].find('div', class_='obmenlinetext') else ""
             row_data["receive_count"] = row.find_all('td')[3].div.text.strip() if row.find_all('td')[3].div.text.strip() else row.find_all('td')[3].find_next('td', class_='tacursotd').div.text.strip() if row.find_all('td')[3].find_next('td', class_='tacursotd') else ""
             row_data["receive_pair_name"] = row.find_all('td')[4].find('div', class_='obmenlinetext').text.strip() if row.find_all('td')[4].find('div', class_='obmenlinetext') else ""
-            row_data["reserve"] = row.find_all('td')[5].div.text.strip() if row.find_all('td')[5].div.text.strip() else ""
+            row_data["reserve_count"] = row.find_all('td')[5].div.text.strip() if row.find_all('td')[5].div.text.strip() else ""
             link_element = row.get('name')
             if link_element:
                 row_data["link"] = link_element
@@ -920,7 +920,7 @@ def extract_bitcoin24_data(soup):
             "give_pair_name": tarif_line.find('div', class_='tarif_curs_title_ins').span.get_text(),
             "receive_pair_name": tarif_line.find_all('div', class_='tarif_curs_title_ins')[1].span.get_text(),
             "receive_count": tarif_line.find_all('div', class_='tarif_curs_ins')[1].span.get_text(),
-            "reserve": tarif_line.find('div', class_='tarif_curs_reserv_ins').get_text().replace("Резерв: ", ""),
+            "reserve_count": tarif_line.find('div', class_='tarif_curs_reserv_ins').get_text().replace("Резерв: ", ""),
             "link": tarif_line['href'].rstrip('/'),
             "exchange_id": 0
         }
@@ -943,7 +943,7 @@ def extract_apexchange_data(soup):
             "give_pair_name": tarif_line.find('div', class_='tarif_curs_title_ins').span.get_text(),
             "receive_pair_name": tarif_line.find_all('div', class_='tarif_curs_title_ins')[1].span.get_text(),
             "receive_count": tarif_line.find_all('div', class_='tarif_curs_ins')[1].span.get_text(),
-            "reserve": tarif_line.find('div', class_='tarif_curs_reserv_ins').get_text().replace("Резерв: ", ""),
+            "reserve_count": tarif_line.find('div', class_='tarif_curs_reserv_ins').get_text().replace("Резерв: ", ""),
             "link": tarif_line['href'].rstrip('/'),
             "exchange_id": 0
         }
@@ -965,7 +965,7 @@ def extract_cashadmin_data(soup):
             "give_pair_name": tarif_line.find('div', class_='tarif_curs_title_ins').span.get_text(),
             "receive_pair_name": tarif_line.find_all('div', class_='tarif_curs_title_ins')[1].span.get_text(),
             "receive_count": tarif_line.find_all('div', class_='tarif_curs_ins')[1].span.get_text(),
-            "reserve": tarif_line.find('div', class_='tarif_curs_reserv_ins').get_text().replace("Резерв: ", ""),
+            "reserve_count": tarif_line.find('div', class_='tarif_curs_reserv_ins').get_text().replace("Резерв: ", ""),
             "link": tarif_line['href'].rstrip('/'),
             "exchange_id": 0
         }
@@ -987,7 +987,7 @@ def extract_grambit_data(soup):
             "give_pair_name": "",
             "receive_count": "",
             "receive_pair_name": "",
-            "reserve": "",
+            "reserve_count": "",
             "link": "",
             "trading_pair": "",
             "exchange_id": 0
@@ -997,7 +997,7 @@ def extract_grambit_data(soup):
             row_data["give_pair_name"] = row.find_all('td')[1].find('div', class_='obmenlinetext').text.strip() if row.find_all('td')[1].find('div', class_='obmenlinetext') else ""
             row_data["receive_count"] = row.find_all('td')[3].div.text.strip() if row.find_all('td')[3].div.text.strip() else row.find_all('td')[3].find_next('td', class_='tacursotd').div.text.strip() if row.find_all('td')[3].find_next('td', class_='tacursotd') else ""
             row_data["receive_pair_name"] = row.find_all('td')[4].find('div', class_='obmenlinetext').text.strip() if row.find_all('td')[4].find('div', class_='obmenlinetext') else ""
-            row_data["reserve"] = row.find_all('td')[5].div.text.strip() if row.find_all('td')[5].div.text.strip() else ""
+            row_data["reserve_count"] = row.find_all('td')[5].div.text.strip() if row.find_all('td')[5].div.text.strip() else ""
             link_element = row.get('name')
             if link_element:
                 row_data["link"] = link_element
@@ -1029,7 +1029,7 @@ def extract_finex24_data(soup):
                 "give_pair_name": tarif_line.find('div', class_='tarif_curs_title_ins').span.get_text(),
                 "receive_pair_name": tarif_line.find_all('div', class_='tarif_curs_title_ins')[1].span.get_text(),
                 "receive_count": tarif_line.find_all('div', class_='tarif_curs_ins')[1].span.get_text(),
-                "reserve": tarif_line.find('div', class_='tarif_curs_reserv_ins').get_text().replace("Резерв: ", ""),
+                "reserve_count": tarif_line.find('div', class_='tarif_curs_reserv_ins').get_text().replace("Резерв: ", ""),
                 "link": link,
                 "exchange_id": 0,
                 "trading_pair": trading_pair
@@ -1049,7 +1049,7 @@ def extract_obama_data(soup):
             "give_pair_name": tarif_line.find('div', class_='tarif_curs_title_ins').span.get_text(),
             "receive_pair_name": tarif_line.find_all('div', class_='tarif_curs_title_ins')[1].span.get_text(),
             "receive_count": tarif_line.find_all('div', class_='tarif_curs_ins')[1].span.get_text(),
-            "reserve": tarif_line.find('div', class_='tarif_curs_reserv_ins').get_text().replace("Резерв: ", ""),
+            "reserve_count": tarif_line.find('div', class_='tarif_curs_reserv_ins').get_text().replace("Резерв: ", ""),
             "link": tarif_line['href'].rstrip('/'),
             "exchange_id": 0
         }
@@ -1071,7 +1071,7 @@ def extract_pandpay_data(soup):
             "give_pair_name": tarif_line.find('div', class_='tarif_curs_title_ins').span.get_text(),
             "receive_pair_name": tarif_line.find_all('div', class_='tarif_curs_title_ins')[1].span.get_text(),
             "receive_count": tarif_line.find_all('div', class_='tarif_curs_ins')[1].span.get_text(),
-            "reserve": tarif_line.find('div', class_='tarif_curs_reserv_ins').get_text().replace("Резерв: ", ""),
+            "reserve_count": tarif_line.find('div', class_='tarif_curs_reserv_ins').get_text().replace("Резерв: ", ""),
             "link": tarif_line['href'].rstrip('/'),
             "exchange_id": 0
         }
@@ -1093,7 +1093,7 @@ def extract_cryptomax_data(soup):
             "give_pair_name": "",
             "receive_count": "",
             "receive_pair_name": "",
-            "reserve": "",
+            "reserve_count": "",
             "link": "",
             "trading_pair": "",
             "exchange_id": 0
@@ -1103,7 +1103,7 @@ def extract_cryptomax_data(soup):
             row_data["give_pair_name"] = row.find_all('td')[1].find('div', class_='obmenlinetext').text.strip() if row.find_all('td')[1].find('div', class_='obmenlinetext') else ""
             row_data["receive_count"] = row.find_all('td')[3].div.text.strip() if row.find_all('td')[3].div.text.strip() else row.find_all('td')[3].find_next('td', class_='tacursotd').div.text.strip() if row.find_all('td')[3].find_next('td', class_='tacursotd') else ""
             row_data["receive_pair_name"] = row.find_all('td')[4].find('div', class_='obmenlinetext').text.strip() if row.find_all('td')[4].find('div', class_='obmenlinetext') else ""
-            row_data["reserve"] = row.find_all('td')[5].div.text.strip() if row.find_all('td')[5].div.text.strip() else ""
+            row_data["reserve_count"] = row.find_all('td')[5].div.text.strip() if row.find_all('td')[5].div.text.strip() else ""
             link_element = row.get('name')
             if link_element:
                 row_data["link"] = link_element
@@ -1128,7 +1128,7 @@ def extract_obmen_data(soup):
             "give_pair_name": tarif_line.find('div', class_='tarif_curs_title_ins').span.get_text(),
             "receive_pair_name": tarif_line.find_all('div', class_='tarif_curs_title_ins')[1].span.get_text(),
             "receive_count": tarif_line.find_all('div', class_='tarif_curs_ins')[1].span.get_text(),
-            "reserve": tarif_line.find('div', class_='tarif_curs_reserv_ins').get_text().replace("Резерв: ", ""),
+            "reserve_count": tarif_line.find('div', class_='tarif_curs_reserv_ins').get_text().replace("Резерв: ", ""),
             "link": tarif_line['href'].rstrip('/'),
             "exchange_id": 0
         }
@@ -1150,7 +1150,7 @@ def extract_excoin_data(soup):
             "give_pair_name": "",
             "receive_count": "",
             "receive_pair_name": "",
-            "reserve": "",
+            "reserve_count": "",
             "link": "",
             "trading_pair": "",
             "exchange_id": 0
@@ -1160,7 +1160,7 @@ def extract_excoin_data(soup):
             row_data["give_pair_name"] = row.find_all('td')[1].find('div', class_='obmenlinetext').text.strip() if row.find_all('td')[1].find('div', class_='obmenlinetext') else ""
             row_data["receive_count"] = row.find_all('td')[3].div.text.strip() if row.find_all('td')[3].div.text.strip() else row.find_all('td')[3].find_next('td', class_='tacursotd').div.text.strip() if row.find_all('td')[3].find_next('td', class_='tacursotd') else ""
             row_data["receive_pair_name"] = row.find_all('td')[4].find('div', class_='obmenlinetext').text.strip() if row.find_all('td')[4].find('div', class_='obmenlinetext') else ""
-            row_data["reserve"] = row.find_all('td')[5].div.text.strip() if row.find_all('td')[5].div.text.strip() else ""
+            row_data["reserve_count"] = row.find_all('td')[5].div.text.strip() if row.find_all('td')[5].div.text.strip() else ""
             link_element = row.get('name')
             if link_element:
                 row_data["link"] = link_element
@@ -1185,7 +1185,7 @@ def extract_allmoney_data(soup):
             "give_pair_name": tarif_line.find('div', class_='tarif_curs_title_ins').span.get_text(),
             "receive_pair_name": tarif_line.find_all('div', class_='tarif_curs_title_ins')[1].span.get_text(),
             "receive_count": tarif_line.find_all('div', class_='tarif_curs_ins')[1].span.get_text(),
-            "reserve": tarif_line.find('div', class_='tarif_curs_reserv_ins').get_text().replace("Резерв: ", ""),
+            "reserve_count": tarif_line.find('div', class_='tarif_curs_reserv_ins').get_text().replace("Резерв: ", ""),
             "link": tarif_line['href'].rstrip('/'),
             "exchange_id": 0
         }
@@ -1207,7 +1207,7 @@ def extract_robmen_data(soup):
             "give_pair_name": tarif_line.find('div', class_='tarif_curs_title_ins').span.get_text(),
             "receive_pair_name": tarif_line.find_all('div', class_='tarif_curs_title_ins')[1].span.get_text(),
             "receive_count": tarif_line.find_all('div', class_='tarif_curs_ins')[1].span.get_text(),
-            "reserve": tarif_line.find('div', class_='tarif_curs_reserv_ins').get_text().replace("Резерв: ", ""),
+            "reserve_count": tarif_line.find('div', class_='tarif_curs_reserv_ins').get_text().replace("Резерв: ", ""),
             "link": tarif_line['href'].rstrip('/'),
             "exchange_id": 0
         }
@@ -1229,7 +1229,7 @@ def extract_cointok_data(soup):
             "give_pair_name": tarif_line.find('div', class_='tarif_curs_title_ins').span.get_text(),
             "receive_pair_name": tarif_line.find_all('div', class_='tarif_curs_title_ins')[1].span.get_text(),
             "receive_count": tarif_line.find_all('div', class_='tarif_curs_ins')[1].span.get_text(),
-            "reserve": tarif_line.find('div', class_='tarif_curs_reserv_ins').get_text().replace("Резерв: ", ""),
+            "reserve_count": tarif_line.find('div', class_='tarif_curs_reserv_ins').get_text().replace("Резерв: ", ""),
             "link": tarif_line['href'].rstrip('/'),
             "exchange_id": 0
         }
@@ -1251,7 +1251,7 @@ def extract_realexchange_data(soup):
             "give_pair_name": tarif_line.find('div', class_='tarif_curs_title_ins').span.get_text(),
             "receive_pair_name": tarif_line.find_all('div', class_='tarif_curs_title_ins')[1].span.get_text(),
             "receive_count": tarif_line.find_all('div', class_='tarif_curs_ins')[1].span.get_text(),
-            "reserve": tarif_line.find('div', class_='tarif_curs_reserv_ins').get_text().replace("Резерв: ", ""),
+            "reserve_count": tarif_line.find('div', class_='tarif_curs_reserv_ins').get_text().replace("Резерв: ", ""),
             "link": tarif_line['href'].rstrip('/'),
             "exchange_id": 0
         }
@@ -1273,7 +1273,7 @@ def extract_favoriteexchanger_data(soup):
             "give_pair_name": tarif_line.find('div', class_='tarif_curs_title_ins').span.get_text(),
             "receive_pair_name": tarif_line.find_all('div', class_='tarif_curs_title_ins')[1].span.get_text(),
             "receive_count": tarif_line.find_all('div', class_='tarif_curs_ins')[1].span.get_text(),
-            "reserve": tarif_line.find('div', class_='tarif_curs_reserv_ins').get_text().replace("Резерв: ", ""),
+            "reserve_count": tarif_line.find('div', class_='tarif_curs_reserv_ins').get_text().replace("Резерв: ", ""),
             "link": tarif_line['href'].rstrip('/'),
             "exchange_id": 0
         }
@@ -1295,7 +1295,7 @@ def extract_realbit_data(soup):
             "give_pair_name": tarif_line.find('div', class_='tarif_curs_title_ins').span.get_text(),
             "receive_pair_name": tarif_line.find_all('div', class_='tarif_curs_title_ins')[1].span.get_text(),
             "receive_count": tarif_line.find_all('div', class_='tarif_curs_ins')[1].span.get_text(),
-            "reserve": tarif_line.find('div', class_='tarif_curs_reserv_ins').get_text().replace("Резерв: ", ""),
+            "reserve_count": tarif_line.find('div', class_='tarif_curs_reserv_ins').get_text().replace("Резерв: ", ""),
             "link": tarif_line['href'].rstrip('/'),
             "exchange_id": 0
         }
@@ -1317,7 +1317,7 @@ def extract_altinbit_data(soup):
             "give_pair_name": tarif_line.find('div', class_='tarif_curs_title_ins').span.get_text(),
             "receive_pair_name": tarif_line.find_all('div', class_='tarif_curs_title_ins')[1].span.get_text(),
             "receive_count": tarif_line.find_all('div', class_='tarif_curs_ins')[1].span.get_text(),
-            "reserve": tarif_line.find('div', class_='tarif_curs_reserv_ins').get_text().replace("Резерв: ", ""),
+            "reserve_count": tarif_line.find('div', class_='tarif_curs_reserv_ins').get_text().replace("Резерв: ", ""),
             "link": tarif_line['href'].rstrip('/'),
             "exchange_id": 0
         }
@@ -1339,7 +1339,7 @@ def extract_epichange_data(soup):
             "give_pair_name": tarif_line.find('div', class_='tarif_curs_title_ins').span.get_text(),
             "receive_pair_name": tarif_line.find_all('div', class_='tarif_curs_title_ins')[1].span.get_text(),
             "receive_count": tarif_line.find_all('div', class_='tarif_curs_ins')[1].span.get_text(),
-            "reserve": tarif_line.find('div', class_='tarif_curs_reserv_ins').get_text().replace("Резерв: ", ""),
+            "reserve_count": tarif_line.find('div', class_='tarif_curs_reserv_ins').get_text().replace("Резерв: ", ""),
             "link": tarif_line['href'].rstrip('/'),
             "exchange_id": 0
         }
@@ -1361,7 +1361,7 @@ def extract_exchangeyourmoney_data(soup):
             "give_pair_name": tarif_line.find('div', class_='tarif_curs_title_ins').span.get_text(),
             "receive_pair_name": tarif_line.find_all('div', class_='tarif_curs_title_ins')[1].span.get_text(),
             "receive_count": tarif_line.find_all('div', class_='tarif_curs_ins')[1].span.get_text(),
-            "reserve": tarif_line.find('div', class_='tarif_curs_reserv_ins').get_text().replace("Резерв: ", ""),
+            "reserve_count": tarif_line.find('div', class_='tarif_curs_reserv_ins').get_text().replace("Резерв: ", ""),
             "link": tarif_line['href'].rstrip('/'),
             "exchange_id": 0
         }
@@ -1383,7 +1383,7 @@ def extract_sberbit_data(soup):
             "give_pair_name": tarif_line.find('div', class_='tarif_curs_title_ins').span.get_text(),
             "receive_pair_name": tarif_line.find_all('div', class_='tarif_curs_title_ins')[1].span.get_text(),
             "receive_count": tarif_line.find_all('div', class_='tarif_curs_ins')[1].span.get_text(),
-            "reserve": tarif_line.find('div', class_='tarif_curs_reserv_ins').get_text().replace("Резерв: ", ""),
+            "reserve_count": tarif_line.find('div', class_='tarif_curs_reserv_ins').get_text().replace("Резерв: ", ""),
             "link": tarif_line['href'].rstrip('/'),
             "exchange_id": 0
         }
@@ -1405,7 +1405,7 @@ def extract_niceobmen_data(soup):
             "give_pair_name": tarif_line.find('div', class_='tarif_curs_title_ins').span.get_text(),
             "receive_pair_name": tarif_line.find_all('div', class_='tarif_curs_title_ins')[1].span.get_text(),
             "receive_count": tarif_line.find_all('div', class_='tarif_curs_ins')[1].span.get_text(),
-            "reserve": tarif_line.find('div', class_='tarif_curs_reserv_ins').get_text().replace("Резерв: ", ""),
+            "reserve_count": tarif_line.find('div', class_='tarif_curs_reserv_ins').get_text().replace("Резерв: ", ""),
             "link": tarif_line['href'].rstrip('/'),
             "exchange_id": 0
         }
@@ -1427,7 +1427,7 @@ def extract_wmsell_data(soup):
             "give_pair_name": tarif_line.find('div', class_='tarif_curs_title_ins').span.get_text(),
             "receive_pair_name": tarif_line.find_all('div', class_='tarif_curs_title_ins')[1].span.get_text(),
             "receive_count": tarif_line.find_all('div', class_='tarif_curs_ins')[1].span.get_text(),
-            "reserve": tarif_line.find('div', class_='tarif_curs_reserv_ins').get_text().replace("Резерв: ", ""),
+            "reserve_count": tarif_line.find('div', class_='tarif_curs_reserv_ins').get_text().replace("Резерв: ", ""),
             "link": tarif_line['href'].rstrip('/'),
             "exchange_id": 0
         }
@@ -1449,7 +1449,7 @@ def extract_getexch_data(soup):
             "give_pair_name": "",
             "receive_count": "",
             "receive_pair_name": "",
-            "reserve": "",
+            "reserve_count": "",
             "link": "",
             "trading_pair": "",
             "exchange_id": 0
@@ -1459,7 +1459,7 @@ def extract_getexch_data(soup):
             row_data["give_pair_name"] = row.find_all('td')[1].find('div', class_='obmenlinetext').text.strip() if row.find_all('td')[1].find('div', class_='obmenlinetext') else ""
             row_data["receive_count"] = row.find_all('td')[3].div.text.strip() if row.find_all('td')[3].div.text.strip() else row.find_all('td')[3].find_next('td', class_='tacursotd').div.text.strip() if row.find_all('td')[3].find_next('td', class_='tacursotd') else ""
             row_data["receive_pair_name"] = row.find_all('td')[4].find('div', class_='obmenlinetext').text.strip() if row.find_all('td')[4].find('div', class_='obmenlinetext') else ""
-            row_data["reserve"] = row.find_all('td')[5].div.text.strip() if row.find_all('td')[5].div.text.strip() else ""
+            row_data["reserve_count"] = row.find_all('td')[5].div.text.strip() if row.find_all('td')[5].div.text.strip() else ""
             link_element = row.get('name')
             if link_element:
                 row_data["link"] = link_element
@@ -1484,7 +1484,7 @@ def extract_crystaltrade_data(soup):
             "give_pair_name": tarif_line.find('div', class_='tarif_curs_title_ins').span.get_text(),
             "receive_pair_name": tarif_line.find_all('div', class_='tarif_curs_title_ins')[1].span.get_text(),
             "receive_count": tarif_line.find_all('div', class_='tarif_curs_ins')[1].span.get_text(),
-            "reserve": tarif_line.find('div', class_='tarif_curs_reserv_ins').get_text().replace("Резерв: ", ""),
+            "reserve_count": tarif_line.find('div', class_='tarif_curs_reserv_ins').get_text().replace("Резерв: ", ""),
             "link": tarif_line['href'].rstrip('/'),
             "exchange_id": 0
         }
@@ -1507,7 +1507,7 @@ def extract_100bitcoins_data(soup):
             "give_pair_name": tarif_line.find('div', class_='tarif_curs_title_ins').span.get_text(),
             "receive_pair_name": tarif_line.find_all('div', class_='tarif_curs_title_ins')[1].span.get_text(),
             "receive_count": tarif_line.find_all('div', class_='tarif_curs_ins')[1].span.get_text(),
-            "reserve": tarif_line.find('div', class_='tarif_curs_reserv_ins').get_text().replace("Резерв: ", ""),
+            "reserve_count": tarif_line.find('div', class_='tarif_curs_reserv_ins').get_text().replace("Резерв: ", ""),
             "link": tarif_line['href'].rstrip('/'),
             "exchange_id": 0
         }
@@ -1530,7 +1530,7 @@ def extract_cryptobar_data(soup):
             "give_pair_name": tarif_line.find('div', class_='tarif_curs_title_ins').span.get_text(),
             "receive_pair_name": tarif_line.find_all('div', class_='tarif_curs_title_ins')[1].span.get_text(),
             "receive_count": tarif_line.find_all('div', class_='tarif_curs_ins')[1].span.get_text(),
-            "reserve": tarif_line.find('div', class_='tarif_curs_reserv_ins').get_text().replace("Резерв: ", ""),
+            "reserve_count": tarif_line.find('div', class_='tarif_curs_reserv_ins').get_text().replace("Резерв: ", ""),
             "link": tarif_line['href'].rstrip('/'),
             "exchange_id": 0
         }
@@ -1553,7 +1553,7 @@ def extract_goldobmen_data(soup):
             "give_pair_name": tarif_line.find('div', class_='tarif_curs_title_ins').span.get_text(),
             "receive_pair_name": tarif_line.find_all('div', class_='tarif_curs_title_ins')[1].span.get_text(),
             "receive_count": tarif_line.find_all('div', class_='tarif_curs_ins')[1].span.get_text(),
-            "reserve": tarif_line.find('div', class_='tarif_curs_reserv_ins').get_text().replace("Резерв: ", ""),
+            "reserve_count": tarif_line.find('div', class_='tarif_curs_reserv_ins').get_text().replace("Резерв: ", ""),
             "link": tarif_line['href'].rstrip('/'),
             "exchange_id": 0
         }
@@ -1576,7 +1576,7 @@ def extract_adb_data(soup):
             "give_pair_name": "",
             "receive_count": "",
             "receive_pair_name": "",
-            "reserve": "",
+            "reserve_count": "",
             "link": "",
             "trading_pair": "",
             "exchange_id": 0
@@ -1586,7 +1586,7 @@ def extract_adb_data(soup):
             row_data["give_pair_name"] = row.find_all('td')[1].find('div', class_='obmenlinetext').text.strip() if row.find_all('td')[1].find('div', class_='obmenlinetext') else ""
             row_data["receive_count"] = row.find_all('td')[3].div.text.strip() if row.find_all('td')[3].div.text.strip() else row.find_all('td')[3].find_next('td', class_='tacursotd').div.text.strip() if row.find_all('td')[3].find_next('td', class_='tacursotd') else ""
             row_data["receive_pair_name"] = row.find_all('td')[4].find('div', class_='obmenlinetext').text.strip() if row.find_all('td')[4].find('div', class_='obmenlinetext') else ""
-            row_data["reserve"] = row.find_all('td')[5].div.text.strip() if row.find_all('td')[5].div.text.strip() else ""
+            row_data["reserve_count"] = row.find_all('td')[5].div.text.strip() if row.find_all('td')[5].div.text.strip() else ""
             link_element = row.get('name')
             if link_element:
                 row_data["link"] = link_element
@@ -1611,7 +1611,7 @@ def extract_natebit_data(soup):
             "give_pair_name": "",
             "receive_count": "",
             "receive_pair_name": "",
-            "reserve": "",
+            "reserve_count": "",
             "link": "",
             "trading_pair": "",
             "exchange_id": 0
@@ -1621,7 +1621,7 @@ def extract_natebit_data(soup):
             row_data["give_pair_name"] = row.find_all('td')[1].find('div', class_='obmenlinetext1').text.strip() if row.find_all('td')[1].find('div', class_='obmenlinetext1') else ""
             row_data["receive_count"] = row.find_all('td')[3].div.text.strip() if row.find_all('td')[3].div.text.strip() else row.find_all('td')[3].find_next('td', class_='tacursotd').div.text.strip() if row.find_all('td')[3].find_next('td', class_='tacursotd') else ""
             row_data["receive_pair_name"] = row.find_all('td')[4].find('div', class_='obmenlinetext').text.strip() if row.find_all('td')[4].find('div', class_='obmenlinetext') else ""
-            row_data["reserve"] = row.find_all('td')[5].div.text.strip() if row.find_all('td')[5].div.text.strip() else ""
+            row_data["reserve_count"] = row.find_all('td')[5].div.text.strip() if row.find_all('td')[5].div.text.strip() else ""
             link_element = row.get('name')
             if link_element:
                 row_data["link"] = link_element
@@ -1646,7 +1646,7 @@ def extract_globalbits_data(soup):
             "give_pair_name": "",
             "receive_count": "",
             "receive_pair_name": "",
-            "reserve": "",
+            "reserve_count": "",
             "link": "",
             "trading_pair": "",
             "exchange_id": 0
@@ -1656,7 +1656,7 @@ def extract_globalbits_data(soup):
             row_data["give_pair_name"] = row.find_all('td')[1].find('div', class_='obmenlinetext').text.strip() if row.find_all('td')[1].find('div', class_='obmenlinetext') else ""
             row_data["receive_count"] = row.find_all('td')[3].div.text.strip() if row.find_all('td')[3].div.text.strip() else row.find_all('td')[3].find_next('td', class_='tacursotd').div.text.strip() if row.find_all('td')[3].find_next('td', class_='tacursotd') else ""
             row_data["receive_pair_name"] = row.find_all('td')[4].find('div', class_='obmenlinetext').text.strip() if row.find_all('td')[4].find('div', class_='obmenlinetext') else ""
-            row_data["reserve"] = row.find_all('td')[5].div.text.strip() if row.find_all('td')[5].div.text.strip() else ""
+            row_data["reserve_count"] = row.find_all('td')[5].div.text.strip() if row.find_all('td')[5].div.text.strip() else ""
             link_element = row.get('name')
             if link_element:
                 row_data["link"] = link_element
@@ -1681,7 +1681,7 @@ def extract_coinguru_data(soup):
             "give_pair_name": tarif_line.find('div', class_='tarif_curs_title_ins').span.get_text(),
             "receive_pair_name": tarif_line.find_all('div', class_='tarif_curs_title_ins')[1].span.get_text(),
             "receive_count": tarif_line.find_all('div', class_='tarif_curs_ins')[1].span.get_text(),
-            "reserve": tarif_line.find('div', class_='tarif_curs_reserv_ins').get_text().replace("Резерв: ", ""),
+            "reserve_count": tarif_line.find('div', class_='tarif_curs_reserv_ins').get_text().replace("Резерв: ", ""),
             "link": tarif_line['href'].rstrip('/'),
             "exchange_id": 0
         }
@@ -1704,7 +1704,7 @@ def extract_atpayz_data(soup):
             "give_pair_name": tarif_line.find('div', class_='tarif_curs_title_ins').span.get_text(),
             "receive_pair_name": tarif_line.find_all('div', class_='tarif_curs_title_ins')[1].span.get_text(),
             "receive_count": tarif_line.find_all('div', class_='tarif_curs_ins')[1].span.get_text(),
-            "reserve": tarif_line.find('div', class_='tarif_curs_reserv_ins').get_text().replace("Резерв: ", ""),
+            "reserve_count": tarif_line.find('div', class_='tarif_curs_reserv_ins').get_text().replace("Резерв: ", ""),
             "link": tarif_line['href'].rstrip('/'),
             "exchange_id": 0
         }
@@ -1727,7 +1727,7 @@ def extract_obmenlite24_data(soup):
             "give_pair_name": tarif_line.find('div', class_='tarif_curs_title_ins').span.get_text(),
             "receive_count": tarif_line.find_all('div', class_='tarif_curs_title_ins')[1].span.get_text(),
             "receive_pair_name": tarif_line.find_all('div', class_='tarif_curs_ins')[1].span.get_text(),
-            "reserve": tarif_line.find('div', class_='tarif_curs_reserv_ins').get_text().replace("Резерв: ", ""),
+            "reserve_count": tarif_line.find('div', class_='tarif_curs_reserv_ins').get_text().replace("Резерв: ", ""),
             "link": tarif_line['href'].rstrip('/'),
             "exchange_id": 0
         }
@@ -1750,7 +1750,7 @@ def extract_expochange_data(soup):
             "give_pair_name": "",
             "receive_count": "",
             "receive_pair_name": "",
-            "reserve": "",
+            "reserve_count": "",
             "link": "",
             "trading_pair": "",
             "exchange_id": 0
@@ -1760,7 +1760,7 @@ def extract_expochange_data(soup):
             row_data["give_pair_name"] = row.find_all('td')[1].find('div', class_='obmenlinetext').text.strip() if row.find_all('td')[1].find('div', class_='obmenlinetext') else ""
             row_data["receive_count"] = row.find_all('td')[3].div.text.strip() if row.find_all('td')[3].div.text.strip() else row.find_all('td')[3].find_next('td', class_='tacursotd').div.text.strip() if row.find_all('td')[3].find_next('td', class_='tacursotd') else ""
             row_data["receive_pair_name"] = row.find_all('td')[4].find('div', class_='obmenlinetext').text.strip() if row.find_all('td')[4].find('div', class_='obmenlinetext') else ""
-            row_data["reserve"] = row.find_all('td')[5].div.text.strip() if row.find_all('td')[5].div.text.strip() else ""
+            row_data["reserve_count"] = row.find_all('td')[5].div.text.strip() if row.find_all('td')[5].div.text.strip() else ""
             link_element = row.get('name')
             if link_element:
                 row_data["link"] = link_element
@@ -1785,7 +1785,7 @@ def extract_ejpmarket_data(soup):
             "give_pair_name": tarif_line.find('div', class_='tarif_curs_title_ins').span.get_text(),
             "receive_pair_name": tarif_line.find_all('div', class_='tarif_curs_title_ins')[1].span.get_text(),
             "receive_count": tarif_line.find_all('div', class_='tarif_curs_ins')[1].span.get_text(),
-            "reserve": tarif_line.find('div', class_='tarif_curs_reserv_ins').get_text().replace("Резерв: ", ""),
+            "reserve_count": tarif_line.find('div', class_='tarif_curs_reserv_ins').get_text().replace("Резерв: ", ""),
             "link": tarif_line['href'].rstrip('/'),
             "exchange_id": 0
         }
@@ -1808,7 +1808,7 @@ def extract_24expay_data(soup):
             "give_pair_name": tarif_line.find('div', class_='tarif_curs_title_ins').span.get_text(),
             "receive_pair_name": tarif_line.find_all('div', class_='tarif_curs_title_ins')[1].span.get_text(),
             "receive_count": tarif_line.find_all('div', class_='tarif_curs_ins')[1].span.get_text(),
-            "reserve": tarif_line.find('div', class_='tarif_curs_reserv_ins').get_text().replace("Резерв: ", ""),
+            "reserve_count": tarif_line.find('div', class_='tarif_curs_reserv_ins').get_text().replace("Резерв: ", ""),
             "link": tarif_line['href'].rstrip('/'),
             "exchange_id": 0
         }
@@ -1831,7 +1831,7 @@ def extract_moneymix_data(soup):
             "give_pair_name": tarif_line.find('div', class_='tarif_curs_title_ins').span.get_text(),
             "receive_pair_name": tarif_line.find_all('div', class_='tarif_curs_title_ins')[1].span.get_text(),
             "receive_count": tarif_line.find_all('div', class_='tarif_curs_ins')[1].span.get_text(),
-            "reserve": tarif_line.find('div', class_='tarif_curs_reserv_ins').get_text().replace("Резерв: ", ""),
+            "reserve_count": tarif_line.find('div', class_='tarif_curs_reserv_ins').get_text().replace("Резерв: ", ""),
             "link": tarif_line['href'].rstrip('/'),
             "exchange_id": 0
         }
@@ -1854,7 +1854,7 @@ def extract_1654_data(soup):
             "give_pair_name": tarif_line.find('div', class_='tarif_curs_title_ins').span.get_text(),
             "receive_pair_name": tarif_line.find_all('div', class_='tarif_curs_title_ins')[1].span.get_text(),
             "receive_count": tarif_line.find_all('div', class_='tarif_curs_ins')[1].span.get_text(),
-            "reserve": tarif_line.find('div', class_='tarif_curs_reserv_ins').get_text().replace("Резерв: ", ""),
+            "reserve_count": tarif_line.find('div', class_='tarif_curs_reserv_ins').get_text().replace("Резерв: ", ""),
             "link": tarif_line['href'].rstrip('/'),
             "exchange_id": 0
         }
@@ -1877,7 +1877,7 @@ def extract_swiftchange_data(soup):
             "give_pair_name": tarif_line.find('div', class_='tarif_curs_title_ins').span.get_text(),
             "receive_pair_name": tarif_line.find_all('div', class_='tarif_curs_title_ins')[1].span.get_text(),
             "receive_count": tarif_line.find_all('div', class_='tarif_curs_ins')[1].span.get_text(),
-            "reserve": tarif_line.find('div', class_='tarif_curs_reserv_ins').get_text().replace("Резерв: ", ""),
+            "reserve_count": tarif_line.find('div', class_='tarif_curs_reserv_ins').get_text().replace("Резерв: ", ""),
             "link": tarif_line['href'].rstrip('/'),
             "exchange_id": 0
         }
@@ -1903,7 +1903,7 @@ def extract_intercontinental_data(soup):
             "give_pair_name": tarif_line.find('div', class_='tarif_curs_title_ins').span.get_text(),
             "receive_pair_name": tarif_line.find_all('div', class_='tarif_curs_title_ins')[1].span.get_text(),
             "receive_count": tarif_line.find_all('div', class_='tarif_curs_ins')[1].span.get_text(),
-            "reserve": tarif_line.find('div', class_='tarif_curs_reserv_ins').get_text().replace("Резерв: ", ""),
+            "reserve_count": tarif_line.find('div', class_='tarif_curs_reserv_ins').get_text().replace("Резерв: ", ""),
             "link": tarif_line['href'].rstrip('/'),
             "exchange_id": 0
         }
@@ -1926,7 +1926,7 @@ def extract_btchange_data(soup):
             "give_pair_name": tarif_line.find('div', class_='tarif_curs_title_ins').span.get_text(),
             "receive_pair_name": tarif_line.find_all('div', class_='tarif_curs_title_ins')[1].span.get_text(),
             "receive_count": tarif_line.find_all('div', class_='tarif_curs_ins')[1].span.get_text(),
-            "reserve": tarif_line.find('div', class_='tarif_curs_reserv_ins').get_text().replace("Резерв: ", ""),
+            "reserve_count": tarif_line.find('div', class_='tarif_curs_reserv_ins').get_text().replace("Резерв: ", ""),
             "link": tarif_line['href'].rstrip('/'),
             "exchange_id": 0
         }
@@ -1949,7 +1949,7 @@ def extract_bitobmenka_data(soup):
             "give_pair_name": tarif_line.find('div', class_='tarif_curs_title_ins').span.get_text(),
             "receive_pair_name": tarif_line.find_all('div', class_='tarif_curs_title_ins')[1].span.get_text(),
             "receive_count": tarif_line.find_all('div', class_='tarif_curs_ins')[1].span.get_text(),
-            "reserve": tarif_line.find('div', class_='tarif_curs_reserv_ins').get_text().replace("Резерв: ", ""),
+            "reserve_count": tarif_line.find('div', class_='tarif_curs_reserv_ins').get_text().replace("Резерв: ", ""),
             "link": tarif_line['href'].rstrip('/'),
             "exchange_id": 0
         }
@@ -1973,7 +1973,7 @@ def extract_bitbong_data(soup):
             "give_pair_name": tarif_line.find('div', class_='tarif_curs_title_ins').span.get_text(),
             "receive_pair_name": tarif_line.find_all('div', class_='tarif_curs_title_ins')[1].span.get_text(),
             "receive_count": tarif_line.find_all('div', class_='tarif_curs_ins')[1].span.get_text(),
-            "reserve": tarif_line.find('div', class_='tarif_curs_reserv_ins').get_text().replace("Резерв: ", ""),
+            "reserve_count": tarif_line.find('div', class_='tarif_curs_reserv_ins').get_text().replace("Резерв: ", ""),
             "link": tarif_line['href'].rstrip('/'),
             "exchange_id": 0
         }
@@ -1995,30 +1995,35 @@ def split_count_and_coin_name(value):
         return value, None
 
 def scrape_and_save_data(url, exchange_name, data_extraction_callback):
-    response = requests.get(url)
-    if response.status_code == 200:
+    try:
+        response = requests.get(url, timeout=(10, 30))
+        response.raise_for_status()  # Проверяет успешность запроса
+
         html = response.text
         soup = BeautifulSoup(html, 'html.parser')
         data_list = data_extraction_callback(soup)
 
         if data_list:
             with SessionLocal() as db:
-                exchange = db.query(Exchanges).filter_by(exchange_name=exchange_name).first()
+                exchange = db.query(Exchange).filter_by(exchange_name=exchange_name).first()
                 exchange_id = exchange.id
 
                 for row_data in data_list:
                     # Обработка "give_count" и "receive_count"
                     give_count, give_name_coin = split_count_and_coin_name(row_data["give_count"])
                     receive_count, receive_name_coin = split_count_and_coin_name(row_data["receive_count"])
+                    reserve_count, reserve_name_coin = split_count_and_coin_name(row_data["reserve_count"])
 
                     # Применение значений после обработки
                     row_data["give_count"] = give_count
                     row_data["give_name_coin"] = give_name_coin
                     row_data["receive_count"] = receive_count
                     row_data["receive_name_coin"] = receive_name_coin
+                    row_data["reserve_count"] = reserve_count
+                    row_data["reserve_name_coin"] = reserve_name_coin
 
                     # Используем регулярное выражение для проверки "give_count" на наличие символов после 0
-                    if row_data["give_count"] == '0':
+                    if row_data["give_count"] == '0' or row_data["receive_count"] == '0' or row_data["reserve_count"] == '0':
                         continue  # Пропускаем запись, если "give_count" равно 0 и не имеет дополнительных символов
 
                     row_data["exchange_id"] = exchange_id
@@ -2038,8 +2043,11 @@ def scrape_and_save_data(url, exchange_name, data_extraction_callback):
             print(f"Данные успешно сохранены в базе данных для {exchange_name}")
         else:
             print(f"Элементы не найдены на бирже {exchange_name}")
-    else:
-        print(f"Ошибка при запросе страницы {url}. Код статуса: {response.status_code}")
+
+    except requests.exceptions.RequestException as e:
+        print(f"Ошибка при запросе страницы {url}. {e}")
+    except Exception as e:
+        print(f"Неожиданная ошибка: {e}")
 
 
 

@@ -27,7 +27,7 @@ app = FastAPI()
 # Настройка CORS для разрешения запросов с вашего фронтенда
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:8080"],  # Замените на адрес вашего фронтенда
+    allow_origins=["*"],  # Замените на адрес вашего фронтенда
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -96,7 +96,6 @@ async def get_exchange(id: int):
     return exchang
 
 
-
 # Создаем API-маршрут для вывода всех курсов
 @app.get("/courses")
 def get_courses(db: Session = Depends(get_db)):
@@ -107,7 +106,7 @@ def get_courses(db: Session = Depends(get_db)):
 @app.get("/exchanges")
 async def get_exchange():
     db = SessionLocal()
-    exchanges = db.query(Exchanges).all()
+    exchanges = db.query(Exchange).all()
     db.close()
     return exchanges
 
@@ -145,18 +144,28 @@ def create_exchange(exchange: schemas.ExchangeCreate):
     db.close()
     return db_exchange
 
-def get_currency_rates(db: Session, give_pair_name: str, receive_pair_name: str, limit: int = 10):
-    return (
-        db.query(CurrencyRate)
-        .filter_by(give_pair_name=give_pair_name, receive_pair_name=receive_pair_name)
-        .limit(limit)
-        .all()
-    )
+
+def get_currency_rates(
+    db: Session,
+    give_pair_name: str = None,
+    receive_pair_name: str = None,
+    limit: int = 10
+) -> List[CurrencyRate]:
+    query = db.query(CurrencyRate)
+
+    if give_pair_name:
+        query = query.filter(CurrencyRate.give_pair_name == give_pair_name)
+
+    if receive_pair_name:
+        query = query.filter(CurrencyRate.receive_pair_name == receive_pair_name)
+
+    return query.limit(limit).all()
+
 
 @app.get("/currency-rates/")
 async def get_currency_rates_endpoint(
-    give_pair_name: str = Query(..., description="The currency you want to give"),
-    receive_pair_name: str = Query(..., description="The payment method you want to use"),
+    give_pair_name: str = Query(None, description="The currency you want to give"),
+    receive_pair_name: str = Query(None, description="The payment method you want to use"),
     limit: int = Query(10, description="Limit the number of results"),
 ):
     try:
@@ -172,7 +181,8 @@ async def get_currency_rates_endpoint(
                     "receive_count": float(rate.receive_count),
                     "receive_name_coin": rate.receive_name_coin,
                     "receive_pair_name": rate.receive_pair_name,
-                    "reserve": rate.reserve,
+                    "reserve_count": rate.reserve_count,
+                    "reserve_name_coin": rate.reserve_name_coin,
                     "link": rate.link,
                     "trading_pair": rate.trading_pair,
                     "exchange_id": rate.exchange_id,
@@ -186,8 +196,9 @@ async def get_currency_rates_endpoint(
             content={"error": f"An error occurred: {str(e)}"}, status_code=500
         )
 
-
 # Новый маршрут для получения списка уникальных валютных пар
 @app.get("/currency-pairs", response_model=dict)
 def get_currency_pairs(db: Session = Depends(get_db)):
     return crud.get_currency_pairs(db)
+
+
